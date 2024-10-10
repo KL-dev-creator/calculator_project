@@ -54,3 +54,15 @@ console.log(operate(12, "-", 4))
 console.log(operate(12, "*", 4))
 console.log(operate(12, "/", 4))
 console.log(operate(12, "S", 4))
+
+const oneButton = document.querySelector('.one')
+const twoButton = document.querySelector('.two')
+
+one.addEventListener('click', () => {
+    console.log("One has been pressed")
+    })
+
+clear.addEventListener('click', () => {
+    document.querySelector('.display')
+    display.innertext
+    })

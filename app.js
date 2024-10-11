@@ -63,6 +63,6 @@ one.addEventListener('click', () => {
     })
 
 clear.addEventListener('click', () => {
-    document.querySelector('.display')
-    display.innertext
+    const displayedText = document.querySelector(".display");
+    displayedText.textContent = "12345"
     })

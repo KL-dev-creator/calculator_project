@@ -62,6 +62,42 @@ one.addEventListener('click', () => {
     console.log("One has been pressed")
     })
 
+two.addEventListener('click', () => {
+    console.log("Two has been pressed")
+    })
+
+three.addEventListener('click', () => {
+    console.log("Three has been pressed")
+    })
+    
+four.addEventListener('click', () => {
+    console.log("Four has been pressed")
+    })
+
+five.addEventListener('click', () => {
+    console.log("Five has been pressed")
+    })
+
+six.addEventListener('click', () => {
+    console.log("Six has been pressed")
+    })
+
+seven.addEventListener('click', () => {
+    console.log("Seven has been pressed")
+    })
+
+eight.addEventListener('click', () => {
+    console.log("Eight has been pressed")
+    })
+
+nine.addEventListener('click', () => {
+    console.log("Nine has been pressed")
+    })
+
+zero.addEventListener('click', () => {
+    console.log("Zero has been pressed")
+    })
+
 clear.addEventListener('click', () => {
     const displayedText = document.querySelector(".display");
     displayedText.textContent = "12345"

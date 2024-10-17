@@ -1,7 +1,7 @@
 let firstNumber = 0;
 let operator = "";
 let secondNumber = 0;
-let isOperator;
+let isOperator = false;
 
 const displayedText = document.querySelector(".display");
 
@@ -62,81 +62,121 @@ console.log(operate(12, "S", 4))
 
 one.addEventListener('click', () => {
     console.log("One has been pressed");
-    isOperator = false;
-    displayedText.textContent += "1";
+    if (isOperator == true) {
+        displayedText.textContent = "1";
+    } else if (isOperator == false) {
+        displayedText.textContent += "1";
+    }
     currentNumber += 1;
+    isOperator = false;
     console.log(currentNumber + " " + isOperator);
     })
 
 two.addEventListener('click', () => {
     console.log("Two has been pressed")
-    isOperator = false;
-    displayedText.textContent += "2";
+    if (isOperator == true) {
+        displayedText.textContent = "2";
+    } else if (isOperator == false) {
+        displayedText.textContent += "2";
+    }
     currentNumber += 2;
+    isOperator = false;
     console.log(currentNumber);
     })
 
 three.addEventListener('click', () => {
     console.log("Three has been pressed")
-    isOperator = false;
-    displayedText.textContent += "3";
+    if (isOperator == true) {
+        displayedText.textContent = "3";
+    } else if (isOperator == false) {
+        displayedText.textContent += "3";
+    }
     currentNumber += 3;
+    isOperator = false;
     console.log(currentNumber);
     })
     
 four.addEventListener('click', () => {
     console.log("Four has been pressed")
-    isOperator = false;
-    displayedText.textContent += "4";
+    if (isOperator == true) {
+        displayedText.textContent = "4";
+    } else if (isOperator == false) {
+        displayedText.textContent += "4";
+    }
     currentNumber += 4;
+    isOperator = false;
     console.log(currentNumber);
     })
 
 five.addEventListener('click', () => {
     console.log("Five has been pressed")
-    isOperator = false;
-    displayedText.textContent += "5";
+    if (isOperator == true) {
+        displayedText.textContent = "5";
+    } else if (isOperator == false) {
+        displayedText.textContent += "5";
+    }
     currentNumber += 5;
+    isOperator = false;
     console.log(currentNumber);
     })
 
 six.addEventListener('click', () => {
     console.log("Six has been pressed")
-    isOperator = false;
-    displayedText.textContent += "6";
+    if (isOperator == true) {
+        displayedText.textContent = "6";
+    } else if (isOperator == false) {
+        displayedText.textContent += "6";
+    }
     currentNumber += 6;
+    isOperator = false;
     console.log(currentNumber);
     })
 
 seven.addEventListener('click', () => {
     console.log("Seven has been pressed")
-    isOperator = false;
-    displayedText.textContent += "7";
+    if (isOperator == true) {
+        displayedText.textContent = "7";
+    } else if (isOperator == false) {
+        displayedText.textContent += "7";
+    }
     currentNumber += 7;
+    isOperator = false;
     console.log(currentNumber);
     })
 
 eight.addEventListener('click', () => {
     console.log("Eight has been pressed")
-    isOperator = false;
-    displayedText.textContent += "8";
+    if (isOperator == true) {
+        displayedText.textContent = "8";
+    } else if (isOperator == false) {
+        displayedText.textContent += "8";
+    }
     currentNumber += 8;
+    isOperator = false;
     console.log(currentNumber);
     })
 
 nine.addEventListener('click', () => {
     console.log("Nine has been pressed")
-    isOperator = false;
-    displayedText.textContent += "9";
+    if (isOperator == true) {
+        displayedText.textContent = "9";
+    } else if (isOperator == false) {
+        displayedText.textContent += "9";
+    }
     currentNumber += 9;
+    isOperator = false;
     console.log(currentNumber);
     })
 
 zero.addEventListener('click', () => {
     console.log("Zero has been pressed")
-    isOperator = false;
-    displayedText.textContent += "0";
+    if (isOperator == true) {
+        displayedText.textContent = "0";
+    } else if (isOperator == false) {
+        displayedText.textContent += "0";
+    }
     currentNumber += 0;
+    isOperator = false;
     console.log(currentNumber);
     })
 
@@ -174,10 +214,10 @@ equals.addEventListener('click', () => {
     console.log(currentNumber);
     })
 
-function convertButtonInput(num) {
-    num.addEventListener()
-    return displayedText.textContent += num;
-}
+// function convertButtonInput(num) {
+//     num.addEventListener()
+//     return displayedText.textContent += num;
+// }
 
 // function CalculatorArray (buttonID, buttonName, isOperator) {
 //     buttonID; [1,2,3,4,5,6,7,8,9,0,"+","-","x","/"],

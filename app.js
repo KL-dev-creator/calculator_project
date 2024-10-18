@@ -67,7 +67,7 @@ one.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "1";
     }
-    currentNumber += 1;
+    currentNumber += "1";
     isOperator = false;
     console.log(currentNumber + " " + isOperator);
     })
@@ -79,7 +79,7 @@ two.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "2";
     }
-    currentNumber += 2;
+    currentNumber += "2";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -91,7 +91,7 @@ three.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "3";
     }
-    currentNumber += 3;
+    currentNumber += "3";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -103,7 +103,7 @@ four.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "4";
     }
-    currentNumber += 4;
+    currentNumber += "4";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -115,7 +115,7 @@ five.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "5";
     }
-    currentNumber += 5;
+    currentNumber += "5";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -127,7 +127,7 @@ six.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "6";
     }
-    currentNumber += 6;
+    currentNumber += "6";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -139,7 +139,7 @@ seven.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "7";
     }
-    currentNumber += 7;
+    currentNumber += "7";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -151,7 +151,7 @@ eight.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "8";
     }
-    currentNumber += 8;
+    currentNumber += "8";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -163,7 +163,7 @@ nine.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "9";
     }
-    currentNumber += 9;
+    currentNumber += "9";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -175,7 +175,7 @@ zero.addEventListener('click', () => {
     } else if (isOperator == false) {
         displayedText.textContent += "0";
     }
-    currentNumber += 0;
+    currentNumber += "0";
     isOperator = false;
     console.log(currentNumber);
     })
@@ -183,29 +183,45 @@ zero.addEventListener('click', () => {
 addition.addEventListener('click', () => {
     console.log("+ has been pressed")
     isOperator = true;
+    if (firstNumber == 0) {
+        firstNumber += currentNumber;
+    }
+    currentNumber = 0;
     displayedText.textContent = "+";
-    console.log(currentNumber + " " + isOperator);
+    console.log(currentNumber + " is the current number " + firstNumber + " is the first number " + isOperator + " is the operator");
     })
 
 subtraction.addEventListener('click', () => {
     console.log("- has been pressed")
     isOperator = true;
+    if (firstNumber == 0) {
+        firstNumber += currentNumber;
+    }
+    currentNumber = 0;
     displayedText.textContent = "-";
-    console.log(currentNumber);
+    console.log(currentNumber + " " + firstNumber + " " + isOperator);
     })
 
 multiplication.addEventListener('click', () => {
     console.log("x has been pressed")
     isOperator = true;
+    if (firstNumber == 0) {
+        firstNumber += currentNumber;
+    }
+    currentNumber = 0;
     displayedText.textContent = "x";
-    console.log(currentNumber);
+    console.log(currentNumber + " " + firstNumber + " " + isOperator);
     })
 
 division.addEventListener('click', () => {
     console.log("/ has been pressed")
     isOperator = true;
+    if (firstNumber == 0) {
+        firstNumber += currentNumber;
+    }
+    currentNumber = 0;
     displayedText.textContent = "/";
-    console.log(currentNumber);
+    console.log(currentNumber + " " + firstNumber + " " + isOperator);  
     })
 
 equals.addEventListener('click', () => {

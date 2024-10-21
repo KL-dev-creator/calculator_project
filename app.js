@@ -10,7 +10,7 @@ let currentNumber = Number(0);
 
 function add(a, b) {
 
-    result = a + b;
+    result = b + a;
     return result;
 }
 
@@ -21,13 +21,13 @@ function subtract(a, b) {
 
 
 function multiply(a, b) {
-    result = a * b;
+    result = b * a;
     return result;
 }
 
 
 function divide(a, b) {
-    result = a / b;
+    result = b / a;
     return result;
 }
 
@@ -186,15 +186,19 @@ addition.addEventListener('click', () => {
     operator = "+";
     if (firstNumber == 0) {
         (firstNumber += currentNumber);
+        displayedText.textContent = "+";
     } else if (firstNumber !== 0 && secondNumber == 0) {
         (secondNumber += firstNumber);
         (firstNumber = currentNumber);
+        displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
     } else {
         (secondNumber = firstNumber);
         (firstNumber = currentNumber);
+        displayedText.textContent = (Number(currentNumber) + Number(secondNumber));
+        console.log(firstNumber + secondNumber + " MULTIPLE ADDITION OPERATORS DETECTED");
     }
     currentNumber = 0;
-    displayedText.textContent = "+";
+    // displayedText.textContent = "+";
     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator");
 
     return firstNumber;
@@ -257,6 +261,7 @@ division.addEventListener('click', () => {
 
 equals.addEventListener('click', () => {
     console.log("= has been pressed")
+    isOperator = true;
     if (firstNumber == 0) {
         (firstNumber += currentNumber);
     } else if (firstNumber !== 0 && secondNumber == 0) {
@@ -266,8 +271,6 @@ equals.addEventListener('click', () => {
         (secondNumber = firstNumber);
         (firstNumber = currentNumber);
     }
-    // operate(firstNumber, operator, secondNumber)
-
     displayedText.textContent = operate(firstNumber, operator, secondNumber);
     console.log(currentNumber + "The first number is " + firstNumber + "| The second number is " + secondNumber);
     })

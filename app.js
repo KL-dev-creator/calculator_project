@@ -188,14 +188,14 @@ addition.addEventListener('click', () => {
         (firstNumber += currentNumber);
         displayedText.textContent = "+";
     } else if (firstNumber !== 0 && secondNumber == 0) {
-        (secondNumber += firstNumber);
+        (secondNumber = Number(secondNumber) + Number(firstNumber));
         (firstNumber = currentNumber);
         displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
     } else {
-        (secondNumber = firstNumber);
+        (secondNumber = Number(secondNumber) + Number(firstNumber));
         (firstNumber = currentNumber);
-        displayedText.textContent = (Number(currentNumber) + Number(secondNumber));
-        console.log(firstNumber + secondNumber + " MULTIPLE ADDITION OPERATORS DETECTED");
+        displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
+        console.log(Number(firstNumber) + " MULTIPLE ADDITION OPERATORS DETECTED");
     }
     currentNumber = 0;
     // displayedText.textContent = "+";
@@ -261,7 +261,7 @@ division.addEventListener('click', () => {
 
 equals.addEventListener('click', () => {
     console.log("= has been pressed")
-    isOperator = true;
+    isOperator = false;
     if (firstNumber == 0) {
         (firstNumber += currentNumber);
     } else if (firstNumber !== 0 && secondNumber == 0) {

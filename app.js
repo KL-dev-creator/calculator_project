@@ -70,7 +70,6 @@ one.addEventListener('click', () => {
     }
     currentNumber += "1";
     isOperator = false;
-    console.log(currentNumber + " " + isOperator);
     })
 
 two.addEventListener('click', () => {
@@ -200,7 +199,6 @@ addition.addEventListener('click', () => {
     }
     holdingNumber += Number(currentNumber);
     currentNumber = 0;
-    // displayedText.textContent = "+";
     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
 
     return firstNumber;
@@ -208,26 +206,30 @@ addition.addEventListener('click', () => {
     })
 
 subtraction.addEventListener('click', () => {
+
     console.log("- has been pressed")
     isOperator = true;
     operator = "-";
-    if (firstNumber !== 0) {
-        (firstNumber += currentNumber);
+    if (firstNumber == 0) {
+        (firstNumber = currentNumber);
+        holdingNumber = firstNumber;
         displayedText.textContent = "-";
     } else if (firstNumber !== 0 && secondNumber == 0) {
-        (secondNumber = Number(secondNumber) - Number(firstNumber));
+        (secondNumber = Number(firstNumber));
         (firstNumber = currentNumber);
-        displayedText.textContent = (Number(firstNumber) - Number(secondNumber));
+        holdingNumber -= Number(currentNumber);
+        displayedText.textContent = (Number(secondNumber) - Number(firstNumber));
     } else {
         (secondNumber = Number(secondNumber) - Number(firstNumber));
         (firstNumber = currentNumber);
-        displayedText.textContent = (Number(firstNumber) - Number(secondNumber));
-        console.log(Number(firstNumber) + " MULTIPLE ADDITION OPERATORS DETECTED");
+        holdingNumber -= Number(currentNumber);
+        displayedText.textContent = (Number(secondNumber) - Number(firstNumber));
+        console.log(Number(firstNumber) + " MULTIPLE SUBTRACTION OPERATORS DETECTED");
     }
-    holdingNumber -= Number(currentNumber);
     currentNumber = 0;
-    displayedText.textContent = "-";
     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
+
+    return secondNumber;
     })
 
 multiplication.addEventListener('click', () => {

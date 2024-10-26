@@ -237,22 +237,6 @@ multiplication.addEventListener('click', () => {
     console.log("x has been pressed")
     isOperator = true;
     operator = "*";
-    // if (firstNumber == 0) {
-    //     (firstNumber += currentNumber);
-    //     displayedText.textContent = "x";
-    //     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
-    // } else if (firstNumber !== 0 && secondNumber == 0) {
-    //     (secondNumber = Number(secondNumber) + Number(firstNumber));
-    //     (firstNumber = currentNumber);
-    //     displayedText.textContent = (Number(firstNumber) * Number(secondNumber));
-    //     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
-    // } else {
-    //     (secondNumber = Number(secondNumber) + Number(firstNumber));
-    //     (firstNumber = currentNumber);
-    //     displayedText.textContent = (Number(firstNumber) * Number(secondNumber));
-    //     console.log(Number(firstNumber) + " MULTIPLE MULTIPLICATION OPERATORS DETECTED");
-    //     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
-    // }
     if (firstNumber == 0) {
         (firstNumber = currentNumber);
         holdingNumber = firstNumber;
@@ -279,17 +263,24 @@ division.addEventListener('click', () => {
     isOperator = true;
     operator ="/";
     if (firstNumber == 0) {
-        (firstNumber += currentNumber);
+        (firstNumber = currentNumber);
+        holdingNumber = firstNumber;
+        displayedText.textContent = "/";
     } else if (firstNumber !== 0 && secondNumber == 0) {
-        (secondNumber += firstNumber);
+        (secondNumber = Number(firstNumber));
         (firstNumber = currentNumber);
+        holdingNumber /= Number(currentNumber);
+        displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
     } else {
-        (secondNumber = firstNumber);
+        (secondNumber = Number(secondNumber) / Number(firstNumber));
         (firstNumber = currentNumber);
+        holdingNumber /= Number(currentNumber);
+        displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
+        console.log(Number(firstNumber) + " MULTIPLE DIVISION OPERATORS DETECTED");
+        console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
     }
     holdingNumber /= Number(currentNumber);
     currentNumber = 0;
-    displayedText.textContent = "/";
     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
     })
 

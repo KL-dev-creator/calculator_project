@@ -32,8 +32,6 @@ function divide(a, b) {
     return result;
 }
 
-console.log(add(firstNumber, secondNumber))
-
 function operate(firstNumber, operator, secondNumber) {
     if (operator == "+") {
         return add(Number(firstNumber), Number(secondNumber));
@@ -47,19 +45,6 @@ function operate(firstNumber, operator, secondNumber) {
         return "Error";
     }
 }
-
-console.log(add(12, 4))
-console.log(subtract(12, 4))
-console.log(multiply(12, 4))
-console.log(divide(12, 4))
-
-console.log("Testing nested functions below")
-
-console.log(operate(12, "+", 4))
-console.log(operate(12, "-", 4))
-console.log(operate(12, "*", 4))
-console.log(operate(12, "/", 4))
-console.log(operate(12, "S", 4))
 
 one.addEventListener('click', () => {
     console.log("One has been pressed");
@@ -180,6 +165,18 @@ zero.addEventListener('click', () => {
     console.log(currentNumber);
     })
 
+decimal.addEventListener('click', () => {
+    console.log(". has been pressed")
+    if (isOperator == true) {
+        displayedText.textContent = ".";
+    } else if (isOperator == false) {
+        displayedText.textContent += ".";
+    }
+    currentNumber += ".";
+    isOperator = false;
+    console.log(currentNumber);
+    })
+
 addition.addEventListener('click', () => {
     console.log("+ has been pressed")
     isOperator = true;
@@ -206,26 +203,47 @@ addition.addEventListener('click', () => {
     })
 
 subtraction.addEventListener('click', () => {
+    // console.log("- has been pressed")
+    // isOperator = true;
+    // operator = "-";
+    // if (firstNumber == 0) {
+    //     (firstNumber = currentNumber);
+    //     holdingNumber = firstNumber;
+    //     displayedText.textContent = "-";
+    // } else if (firstNumber !== 0 && secondNumber == 0) {
+    //     (secondNumber = Number(firstNumber));
+    //     (firstNumber = currentNumber);
+    //     holdingNumber -= Number(currentNumber);
+    //     displayedText.textContent = (Number(secondNumber) - Number(firstNumber));
+    // } else {
+    //     (secondNumber = Number(secondNumber) - Number(firstNumber));
+    //     (firstNumber = currentNumber);
+    //     holdingNumber -= Number(currentNumber);
+    //     displayedText.textContent = (Number(secondNumber) - Number(firstNumber));
+    //     console.log(Number(firstNumber) + " MULTIPLE SUBTRACTION OPERATORS DETECTED");
+    // }
+    // currentNumber = 0;
+    // console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
 
-    console.log("- has been pressed")
+    // return firstNumber;
+    // return secondNumber;
+    console.log("+ has been pressed")
     isOperator = true;
     operator = "-";
     if (firstNumber == 0) {
-        (firstNumber = currentNumber);
-        holdingNumber = firstNumber;
+        firstNumber = Number(firstNumber) + (Number(currentNumber)* -1);
         displayedText.textContent = "-";
     } else if (firstNumber !== 0 && secondNumber == 0) {
-        (secondNumber = Number(firstNumber));
+        secondNumber = (Number(secondNumber) + (Number(firstNumber)* -1));
         (firstNumber = currentNumber);
-        holdingNumber -= Number(currentNumber);
-        displayedText.textContent = (Number(secondNumber) - Number(firstNumber));
+        displayedText.textContent = ((Number(firstNumber)* -1) + Number(secondNumber));
     } else {
-        (secondNumber = Number(secondNumber) - Number(firstNumber));
+        secondNumber = (Number(secondNumber) + (Number(firstNumber)*-1));
         (firstNumber = currentNumber);
-        holdingNumber -= Number(currentNumber);
-        displayedText.textContent = (Number(secondNumber) - Number(firstNumber));
+        displayedText.textContent = ((Number(firstNumber)* -1) + Number(secondNumber));
         console.log(Number(firstNumber) + " MULTIPLE SUBTRACTION OPERATORS DETECTED");
     }
+    holdingNumber += (Number(currentNumber)*-1);
     currentNumber = 0;
     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
 
@@ -286,7 +304,7 @@ division.addEventListener('click', () => {
 
 equals.addEventListener('click', () => {
     console.log("= has been pressed")
-    isOperator = false;
+    isOperator = true;
     if (firstNumber == 0) {
         (firstNumber += currentNumber);
     } else if (firstNumber !== 0 && secondNumber == 0) {
@@ -296,7 +314,11 @@ equals.addEventListener('click', () => {
         (secondNumber = firstNumber);
         (firstNumber = currentNumber);
     }
-    displayedText.textContent = operate(firstNumber, operator, secondNumber);
+    displayedText.textContent = Math.round(operate(firstNumber, operator, secondNumber) * 100) / 100;
+    currentNumber = 0;
+    firstNumber = 0;
+    secondNumber = 0;
+    holdingNumber = 0;
     console.log(currentNumber + "The first number is " + firstNumber + "| The second number is " + secondNumber);
     })
 
@@ -318,5 +340,9 @@ equals.addEventListener('click', () => {
 
 clear.addEventListener('click', () => {
     currentNumber = 0;
+    firstNumber = 0;
+    secondNumber = 0;
+    holdingNumber = 0;
+    isOperator = false;
     displayedText.textContent = ""
     })

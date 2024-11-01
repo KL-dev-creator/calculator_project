@@ -1,4 +1,5 @@
 let firstNumber = 0;
+let negativeFirstNumber = (firstNumber*-1);
 let operator = "";
 let secondNumber = 0;
 let isOperator = false;
@@ -203,50 +204,38 @@ addition.addEventListener('click', () => {
     })
 
 subtraction.addEventListener('click', () => {
-    // console.log("- has been pressed")
-    // isOperator = true;
-    // operator = "-";
-    // if (firstNumber == 0) {
-    //     (firstNumber = currentNumber);
-    //     holdingNumber = firstNumber;
-    //     displayedText.textContent = "-";
-    // } else if (firstNumber !== 0 && secondNumber == 0) {
-    //     (secondNumber = Number(firstNumber));
-    //     (firstNumber = currentNumber);
-    //     holdingNumber -= Number(currentNumber);
-    //     displayedText.textContent = (Number(secondNumber) - Number(firstNumber));
-    // } else {
-    //     (secondNumber = Number(secondNumber) - Number(firstNumber));
-    //     (firstNumber = currentNumber);
-    //     holdingNumber -= Number(currentNumber);
-    //     displayedText.textContent = (Number(secondNumber) - Number(firstNumber));
-    //     console.log(Number(firstNumber) + " MULTIPLE SUBTRACTION OPERATORS DETECTED");
-    // }
-    // currentNumber = 0;
-    // console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
-
-    // return firstNumber;
-    // return secondNumber;
-    console.log("+ has been pressed")
+    console.log("- has been pressed")
     isOperator = true;
     operator = "-";
     if (firstNumber == 0) {
-        firstNumber = Number(firstNumber) + (Number(currentNumber)* -1);
-        displayedText.textContent = "-";
+        if (secondNumber == 0) {
+            firstNumber = currentNumber;
+            holdingNumber = firstNumber;
+            displayedText.textContent = "-";
+            console.log("PATH A"); 
+        } else if (secondNumber !== 0) {
+            firstNumber = currentNumber;
+            holdingNumber -= Number(currentNumber);
+            displayedText.textContent = holdingNumber;
+            console.log("PATH B"); 
+        }
     } else if (firstNumber !== 0 && secondNumber == 0) {
-        secondNumber = (Number(secondNumber) + (Number(firstNumber)* -1));
+        (secondNumber = Number(firstNumber));
         (firstNumber = currentNumber);
-        displayedText.textContent = ((Number(firstNumber)* -1) + Number(secondNumber));
+        holdingNumber -= Number(currentNumber);
+        displayedText.textContent = holdingNumber;
+        console.log("PATH C");
     } else {
-        secondNumber = (Number(secondNumber) + (Number(firstNumber)*-1));
+        (secondNumber = Number(secondNumber) - Number(firstNumber));
         (firstNumber = currentNumber);
-        displayedText.textContent = ((Number(firstNumber)* -1) + Number(secondNumber));
-        console.log(Number(firstNumber) + " MULTIPLE SUBTRACTION OPERATORS DETECTED");
+        holdingNumber -= Number(currentNumber);
+        displayedText.textContent = holdingNumber;
+        console.log("PATH D");
     }
-    holdingNumber += (Number(currentNumber)*-1);
     currentNumber = 0;
+    
+    firstNumber = holdingNumber;
     console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
-
     return firstNumber;
     return secondNumber;
     })

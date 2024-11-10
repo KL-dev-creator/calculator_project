@@ -181,114 +181,223 @@ decimal.addEventListener('click', () => {
 addition.addEventListener('click', () => {
     console.log("+ has been pressed")
     isOperator = true;
-    operator = "+";
-    if (firstNumber == 0) {
-        (firstNumber += currentNumber);
-        displayedText.textContent = "+";
-    } else if (firstNumber !== 0 && secondNumber == 0) {
-        (secondNumber = Number(secondNumber) + Number(firstNumber));
-        (firstNumber = currentNumber);
-        displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
-    } else {
-        (secondNumber = Number(secondNumber) + Number(firstNumber));
-        (firstNumber = currentNumber);
-        displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
-        console.log(Number(firstNumber) + " MULTIPLE ADDITION OPERATORS DETECTED");
-    }
-    holdingNumber += Number(currentNumber);
-    currentNumber = 0;
-    console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
+    if (operator !== "+") {
+            if (operator == "-") {
+                firstNumber = Number(firstNumber) - Number(currentNumber);
+                displayedText.textContent = firstNumber + " +";
+                console.log("subtraction now addition")
+                console.log("PATH A1 |" + currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| ");
+            } else if (operator == "*") {
+                firstNumber = Number(firstNumber) * Number(currentNumber);
+                displayedText.textContent = firstNumber + " +";
+                console.log("multiplication now addition")
+            } else if (operator == "/") {
+                firstNumber = Number(firstNumber) / Number(currentNumber);
+                displayedText.textContent = firstNumber + " +";
+                console.log("division now addition")
+            } else if (operator == "") {
+                firstNumber = currentNumber;
+                displayedText.textContent = "+";
+                console.log(currentNumber + " is the current number")
+                console.log("nothing to addition")
+            }
+            operator = "+";
+            currentNumber = 0;
 
-    return firstNumber;
-    return secondNumber;
+            return firstNumber;
+            return secondNumber;
+    } else {
+            operator = "+";
+            if (firstNumber == 0) {
+                (firstNumber += Number(currentNumber));
+                displayedText.textContent = "+";
+                console.log("PATH ABC");
+            } else if (firstNumber !== 0 && secondNumber == 0) {
+                (secondNumber = Number(secondNumber) + Number(firstNumber));
+                (firstNumber = currentNumber);
+                displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
+            } else {
+                (secondNumber = Number(secondNumber) + Number(firstNumber));
+                (firstNumber = currentNumber);
+                displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
+            }
+            holdingNumber += Number(currentNumber);
+            
+            console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
+            currentNumber = 0;
+            return firstNumber;
+            return secondNumber;
+        }
     })
 
 subtraction.addEventListener('click', () => {
     console.log("- has been pressed")
     isOperator = true;
-    operator = "-";
-    if (firstNumber == 0) {
-        if (secondNumber == 0) {
+    if (operator !== "-" || operator == "") {
+        // displayedText.textContent = "-";
+        if (operator == "+") {
+            firstNumber = Number(firstNumber) + Number(currentNumber);
+            displayedText.textContent = firstNumber + " -";
+            console.log("addition now subtraction")
+        } else if (operator == "*") {
+            firstNumber = Number(firstNumber) * Number(currentNumber);
+            displayedText.textContent = firstNumber + " -";
+            console.log("multiplication now subtraction")
+        } else if (operator == "/") {
+            firstNumber = Number(firstNumber) / Number(currentNumber);
+            displayedText.textContent = firstNumber + " -";
+            console.log("division now subtraction")
+        } else if (operator == "") {
             firstNumber = currentNumber;
-            holdingNumber = firstNumber;
-            displayedText.textContent = "-";
-            console.log("PATH A"); 
-        } else if (secondNumber !== 0) {
-            firstNumber = currentNumber;
-            holdingNumber -= Number(currentNumber);
-            displayedText.textContent = holdingNumber;
-            console.log("PATH B"); 
+            displayedText.textContent = "-"
+            console.log(currentNumber + " is the current number")
+            console.log("Nothing now subtraction")
         }
-    } else if (firstNumber !== 0 && secondNumber == 0) {
-        (secondNumber = Number(firstNumber));
-        (firstNumber = currentNumber);
-        holdingNumber -= Number(currentNumber);
-        displayedText.textContent = holdingNumber;
-        console.log("PATH C");
+        operator = "-";
+        currentNumber = 0;
+        
+        return firstNumber;
+        return secondNumber;
     } else {
-        (secondNumber = Number(secondNumber) - Number(firstNumber));
-        (firstNumber = currentNumber);
-        holdingNumber -= Number(currentNumber);
-        displayedText.textContent = holdingNumber;
-        console.log("PATH D");
-    }
-    currentNumber = 0;
-    
-    firstNumber = holdingNumber;
-    console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
-    return firstNumber;
-    return secondNumber;
+        operator = "-";
+        if (firstNumber == 0) {
+            if (secondNumber == 0) {
+                firstNumber = currentNumber;
+                holdingNumber = firstNumber;
+                displayedText.textContent = "-" + currentNumber;
+                console.log("PATH A"); 
+            } else if (secondNumber !== 0) {
+                firstNumber = currentNumber;
+                holdingNumber -= Number(currentNumber);
+                displayedText.textContent = holdingNumber;
+                console.log("PATH B"); 
+            }
+        } else if (firstNumber !== 0 && secondNumber == 0) {
+            (secondNumber = Number(secondNumber) + Number(firstNumber));
+            (firstNumber = currentNumber);
+            holdingNumber -= Number(currentNumber);
+            displayedText.textContent = String(secondNumber - firstNumber);
+            console.log("PATH C test |" + currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| ");
+            console.log("PATH C");
+        } else {
+            (secondNumber = Number(secondNumber) + Number(firstNumber));
+            (firstNumber = currentNumber);
+            holdingNumber -= Number(currentNumber);
+            displayedText.textContent = String(secondNumber - firstNumber);
+            console.log("PATH D");
+        }
+        currentNumber = 0;
+        
+        firstNumber = holdingNumber;
+        return firstNumber;
+        return secondNumber;
+        }
     })
 
 multiplication.addEventListener('click', () => {
     console.log("x has been pressed")
     isOperator = true;
-    operator = "*";
-    if (firstNumber == 0) {
-        (firstNumber = currentNumber);
-        holdingNumber = firstNumber;
-        displayedText.textContent = "x";
-    } else if (firstNumber !== 0 && secondNumber == 0) {
-        (secondNumber = Number(firstNumber));
-        (firstNumber = currentNumber);
-        holdingNumber *= Number(currentNumber);
-        displayedText.textContent = (Number(secondNumber) * Number(firstNumber));
+    if (operator !== "*" || operator == "") {
+        if (operator == "+") {
+            firstNumber = Number(firstNumber) + Number(currentNumber);
+            displayedText.textContent = firstNumber + " x";
+            console.log("addition now multiplication")
+        } else if (operator == "-") {
+            firstNumber = Number(firstNumber) - Number(currentNumber);
+            displayedText.textContent = firstNumber + " x";
+            console.log("subtraction now multiplication")
+        } else if (operator == "/") {
+            firstNumber = Number(firstNumber) / Number(currentNumber);
+            displayedText.textContent = firstNumber + " x";
+            console.log("division now multiplication")
+        } else if (operator == "") {
+            firstNumber = currentNumber;
+            displayedText.textContent = "x"
+            console.log(currentNumber + " is the current number")
+            console.log("Nothing now subtraction")
+        }
+        operator = "*";
+        currentNumber = 0;
+
+        return firstNumber;
+        return secondNumber;
     } else {
-        (secondNumber = Number(secondNumber) * Number(firstNumber));
-        (firstNumber = currentNumber);
+        operator = "*";
+        if (firstNumber == 0) {
+            (firstNumber = currentNumber);
+            holdingNumber = firstNumber;
+            displayedText.textContent = "x";
+        } else if (firstNumber !== 0 && secondNumber == 0) {
+            (secondNumber = Number(firstNumber));
+            (firstNumber = currentNumber);
+            holdingNumber *= Number(currentNumber);
+            displayedText.textContent = (Number(secondNumber) * Number(firstNumber));
+        } else {
+            (secondNumber = Number(secondNumber) * Number(firstNumber));
+            (firstNumber = currentNumber);
+            holdingNumber *= Number(currentNumber);
+            displayedText.textContent = (Number(secondNumber) * Number(firstNumber));
+            console.log(Number(firstNumber));
+        }
         holdingNumber *= Number(currentNumber);
-        displayedText.textContent = (Number(secondNumber) * Number(firstNumber));
-        console.log(Number(firstNumber) + " MULTIPLE SUBTRACTION OPERATORS DETECTED");
-    }
-    holdingNumber *= Number(currentNumber);
-    currentNumber = 0;
-    console.log(currentNumber + " " + firstNumber + " " + isOperator);
+        currentNumber = 0;
+        return firstNumber;
+        return secondNumber;
+        }
     })
 
 division.addEventListener('click', () => {
     console.log("/ has been pressed")
     isOperator = true;
-    operator ="/";
-    if (firstNumber == 0) {
-        (firstNumber = currentNumber);
-        holdingNumber = firstNumber;
-        displayedText.textContent = "/";
-    } else if (firstNumber !== 0 && secondNumber == 0) {
-        (secondNumber = Number(firstNumber));
-        (firstNumber = currentNumber);
+    if (operator !== "/" || operator == "") {
+        if (operator == "+") {
+            firstNumber = Number(firstNumber) + Number(currentNumber);
+            displayedText.textContent = firstNumber + " /";
+            console.log("addition now division")
+        } else if (operator == "-") {
+            firstNumber = Number(firstNumber) - Number(currentNumber);
+            displayedText.textContent = firstNumber + " /";
+            console.log("subtraction now division")
+        } else if (operator == "/") {
+            firstNumber = Number(firstNumber) / Number(currentNumber);
+            displayedText.textContent = firstNumber + " /";
+            console.log("multiplication now division")
+        } else if (operator == "") {
+            firstNumber = currentNumber;
+            displayedText.textContent = "/"
+            console.log(currentNumber + " is the current number")
+            console.log("Nothing now division")
+        }
+        operator = "/";
+        currentNumber = 0;
+
+        return firstNumber;
+        return secondNumber;
+    } else  {
+        operator ="/";
+        if (firstNumber == 0) {
+            (firstNumber = currentNumber);
+            holdingNumber = firstNumber;
+            displayedText.textContent = "/";
+        } else if (firstNumber !== 0 && secondNumber == 0) {
+            (secondNumber = Number(firstNumber));
+            (firstNumber = currentNumber);
+            holdingNumber /= Number(currentNumber);
+            displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
+        } else {
+            (secondNumber = Number(secondNumber) / Number(firstNumber));
+            (firstNumber = currentNumber);
+            holdingNumber /= Number(currentNumber);
+            displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
+            console.log(Number(firstNumber) + " MULTIPLE DIVISION OPERATORS DETECTED");
+            console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
+        }
         holdingNumber /= Number(currentNumber);
-        displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
-    } else {
-        (secondNumber = Number(secondNumber) / Number(firstNumber));
-        (firstNumber = currentNumber);
-        holdingNumber /= Number(currentNumber);
-        displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
-        console.log(Number(firstNumber) + " MULTIPLE DIVISION OPERATORS DETECTED");
-        console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
-    }
-    holdingNumber /= Number(currentNumber);
-    currentNumber = 0;
-    console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
+        currentNumber = 0;
+        return firstNumber;
+        return secondNumber;
+        }
+    
     })
 
 equals.addEventListener('click', () => {

@@ -68,6 +68,9 @@ two.addEventListener('click', () => {
     currentNumber += "2";
     isOperator = false;
     console.log(currentNumber);
+    console.log("second (EXPECTED RESULT) = " + secondNumber)
+    console.log("first = " + firstNumber)
+    console.log("currentNumber = " + currentNumber)
     })
 
 three.addEventListener('click', () => {
@@ -207,26 +210,32 @@ addition.addEventListener('click', () => {
             return firstNumber;
             return secondNumber;
     } else {
-            operator = "+";
-            if (firstNumber == 0) {
-                (firstNumber += Number(currentNumber));
-                displayedText.textContent = "+";
-                console.log("PATH ABC");
-            } else if (firstNumber !== 0 && secondNumber == 0) {
-                (secondNumber = Number(secondNumber) + Number(firstNumber));
-                (firstNumber = currentNumber);
-                displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
-            } else {
-                (secondNumber = Number(secondNumber) + Number(firstNumber));
-                (firstNumber = currentNumber);
-                displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
+        if (operator == "+" && currentNumber == 0) {
+            console.log("Double addition detected")
+        } else {
+                operator = "+";
+                if (firstNumber == 0) {
+                    (firstNumber += Number(currentNumber));
+                    displayedText.textContent = "+";
+                    console.log("A + 1T");
+                } else if (firstNumber !== 0 && secondNumber == 0) {
+                    (secondNumber = Number(secondNumber) + Number(firstNumber));
+                    (firstNumber = currentNumber);
+                    displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
+                    console.log("A + 2T");
+                } else {
+                    (secondNumber = Number(secondNumber) + Number(firstNumber));
+                    (firstNumber = currentNumber);
+                    displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
+                    console.log("A + 3T");
+                }
+                holdingNumber += Number(currentNumber);
+                
+                console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
+                currentNumber = 0;
+                return firstNumber;
+                return secondNumber;
             }
-            holdingNumber += Number(currentNumber);
-            
-            console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
-            currentNumber = 0;
-            return firstNumber;
-            return secondNumber;
         }
     })
 
@@ -237,8 +246,13 @@ subtraction.addEventListener('click', () => {
         // displayedText.textContent = "-";
         if (operator == "+") {
             firstNumber = Number(firstNumber) + Number(currentNumber);
-            displayedText.textContent = firstNumber + " -";
+            secondNumber = Number(secondNumber) + Number(firstNumber);
+            // displayedText.textContent = firstNumber + " -";
+            displayedText.textContent = secondNumber + " -";
+            // console.log(firstNumber + " -");
+            // console.log(secondNumber + " -");
             console.log("addition now subtraction")
+            console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
         } else if (operator == "*") {
             firstNumber = Number(firstNumber) * Number(currentNumber);
             displayedText.textContent = firstNumber + " -";
@@ -259,38 +273,62 @@ subtraction.addEventListener('click', () => {
         return firstNumber;
         return secondNumber;
     } else {
-        operator = "-";
-        if (firstNumber == 0) {
-            if (secondNumber == 0) {
-                firstNumber = currentNumber;
-                holdingNumber = firstNumber;
-                displayedText.textContent = "-" + currentNumber;
-                console.log("PATH A"); 
-            } else if (secondNumber !== 0) {
-                firstNumber = currentNumber;
-                holdingNumber -= Number(currentNumber);
-                displayedText.textContent = holdingNumber;
-                console.log("PATH B"); 
-            }
-        } else if (firstNumber !== 0 && secondNumber == 0) {
-            (secondNumber = Number(secondNumber) + Number(firstNumber));
-            (firstNumber = currentNumber);
-            holdingNumber -= Number(currentNumber);
-            displayedText.textContent = String(secondNumber - firstNumber);
-            console.log("PATH C test |" + currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| ");
-            console.log("PATH C");
+        if (operator == "-" && currentNumber == 0)   {
+            console.log("Double subtraction detected")
         } else {
-            (secondNumber = Number(secondNumber) + Number(firstNumber));
-            (firstNumber = currentNumber);
-            holdingNumber -= Number(currentNumber);
-            displayedText.textContent = String(secondNumber - firstNumber);
-            console.log("PATH D");
-        }
-        currentNumber = 0;
-        
-        firstNumber = holdingNumber;
-        return firstNumber;
-        return secondNumber;
+                operator = "-";
+                if (firstNumber == 0) {
+                    if (secondNumber == 0) {
+                        firstNumber = currentNumber;
+                        holdingNumber = firstNumber;
+                        // displayedText.textContent = "-" + currentNumber;
+                        displayedText.textContent = currentNumber;
+                        console.log("PATH A"); 
+                    } else if (secondNumber !== 0) {
+                        firstNumber = currentNumber;
+                        holdingNumber -= Number(currentNumber);
+                        displayedText.textContent = holdingNumber;
+                        console.log("PATH B"); 
+                    }
+                } else if (firstNumber !== 0 && secondNumber == 0) {
+                    secondNumber = Number(firstNumber);
+                    firstNumber = currentNumber;
+                    // HAVE A LOOK HERE BECAUSE OF NEGATIVE NUMBERS
+                    holdingNumber -= Number(currentNumber);
+                    secondNumber = (Number(secondNumber) - Number(firstNumber));
+                    displayedText.textContent = (secondNumber);
+                    console.log("second (EXPECTED RESULT) = " + secondNumber)
+                    console.log("first = " + firstNumber)
+                    console.log("currentNumber = " + currentNumber)
+                    console.log("PATH C");
+                } else {
+                    // To avoid numbers becoming negative
+                    if (currentNumber < 0) {
+                        currentNumber = -currentNumber; 
+                    }
+                    if (firstNumber < 0) {
+                        firstNumber = -firstNumber; 
+                    }
+                    if (secondNumber < 0) {
+                        secondNumber = -secondNumber;
+                    }
+                    holdingNumber -= Number(currentNumber);
+
+                    firstNumber = currentNumber;
+                    secondNumber = secondNumber - firstNumber;
+
+                    console.log("second (EXPECTED RESULT) = " + secondNumber)
+                    console.log("first = " + firstNumber)
+                    console.log("currentNumber = " + currentNumber)
+                    displayedText.textContent = Number(secondNumber);
+                    console.log("PATH D");
+                }
+                currentNumber = 0;
+                
+                firstNumber = holdingNumber;
+                return firstNumber;
+                return secondNumber;
+            }
         }
     })
 
@@ -322,32 +360,37 @@ multiplication.addEventListener('click', () => {
         return firstNumber;
         return secondNumber;
     } else {
-        operator = "*";
-        if (firstNumber == 0) {
-            (firstNumber = currentNumber);
-            holdingNumber = firstNumber;
-            displayedText.textContent = "x";
-        } else if (firstNumber !== 0 && secondNumber == 0) {
-            (secondNumber = Number(firstNumber));
-            (firstNumber = currentNumber);
-            holdingNumber *= Number(currentNumber);
-            displayedText.textContent = (Number(secondNumber) * Number(firstNumber));
+        if (operator == "*" && currentNumber == 0)  {
+            console.log("Double multiplication detected")
         } else {
-            (secondNumber = Number(secondNumber) * Number(firstNumber));
-            (firstNumber = currentNumber);
-            holdingNumber *= Number(currentNumber);
-            displayedText.textContent = (Number(secondNumber) * Number(firstNumber));
-            console.log(Number(firstNumber));
-        }
-        holdingNumber *= Number(currentNumber);
-        currentNumber = 0;
-        return firstNumber;
-        return secondNumber;
+                operator = "*";
+                if (firstNumber == 0) {
+                    (firstNumber = currentNumber);
+                    holdingNumber = firstNumber;
+                    displayedText.textContent = "x";
+                } else if (firstNumber !== 0 && secondNumber == 0) {
+                    (secondNumber = Number(firstNumber));
+                    (firstNumber = currentNumber);
+                    holdingNumber *= Number(currentNumber);
+                    displayedText.textContent = (Number(secondNumber) * Number(firstNumber));
+                } else {
+                    (secondNumber = Number(secondNumber) * Number(firstNumber));
+                    (firstNumber = currentNumber);
+                    holdingNumber *= Number(currentNumber);
+                    displayedText.textContent = (Number(secondNumber) * Number(firstNumber));
+                }
+                holdingNumber *= Number(currentNumber);
+                currentNumber = 0;
+                return firstNumber;
+                return secondNumber;
+                // TRY MULTIPLYING AND THEN DIVIDING STRAIGHT AFTERWARDS EXPECTED OUTPUT IS NOT GIVEN
+            }
         }
     })
 
 division.addEventListener('click', () => {
     console.log("/ has been pressed")
+    console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + operator + " is the operator");
     isOperator = true;
     if (operator !== "/" || operator == "") {
         if (operator == "+") {
@@ -358,8 +401,8 @@ division.addEventListener('click', () => {
             firstNumber = Number(firstNumber) - Number(currentNumber);
             displayedText.textContent = firstNumber + " /";
             console.log("subtraction now division")
-        } else if (operator == "/") {
-            firstNumber = Number(firstNumber) / Number(currentNumber);
+        } else if (operator == "*") {
+            firstNumber = Number(firstNumber) * Number(currentNumber);
             displayedText.textContent = firstNumber + " /";
             console.log("multiplication now division")
         } else if (operator == "") {
@@ -368,36 +411,42 @@ division.addEventListener('click', () => {
             console.log(currentNumber + " is the current number")
             console.log("Nothing now division")
         }
+        console.log("D-EE")
         operator = "/";
         currentNumber = 0;
 
         return firstNumber;
         return secondNumber;
     } else  {
-        operator ="/";
-        if (firstNumber == 0) {
-            (firstNumber = currentNumber);
-            holdingNumber = firstNumber;
-            displayedText.textContent = "/";
-        } else if (firstNumber !== 0 && secondNumber == 0) {
-            (secondNumber = Number(firstNumber));
-            (firstNumber = currentNumber);
-            holdingNumber /= Number(currentNumber);
-            displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
+        if (operator == "/" && currentNumber == 0) {
+            console.log("Double division detected")
         } else {
-            (secondNumber = Number(secondNumber) / Number(firstNumber));
-            (firstNumber = currentNumber);
-            holdingNumber /= Number(currentNumber);
-            displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
-            console.log(Number(firstNumber) + " MULTIPLE DIVISION OPERATORS DETECTED");
-            console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
+                operator ="/";
+                if (firstNumber == 0) {
+                    (firstNumber = currentNumber);
+                    holdingNumber = firstNumber;
+                    displayedText.textContent = "/";
+                    console.log("D-A")
+                } else if (firstNumber !== 0 && secondNumber == 0) {
+                    (secondNumber = Number(firstNumber));
+                    (firstNumber = currentNumber);
+                    holdingNumber /= Number(currentNumber);
+                    displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
+                    console.log("D-B")
+                } else {
+                    (secondNumber = Number(secondNumber) / Number(firstNumber));
+                    (firstNumber = currentNumber);
+                    holdingNumber /= Number(currentNumber);
+                    displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
+                    console.log(Number(firstNumber) + " MULTIPLE DIVISION OPERATORS DETECTED");
+                    console.log("D-C")
+                }
+                holdingNumber /= Number(currentNumber);
+                currentNumber = 0;
+                return firstNumber;
+                return secondNumber;
+            }
         }
-        holdingNumber /= Number(currentNumber);
-        currentNumber = 0;
-        return firstNumber;
-        return secondNumber;
-        }
-    
     })
 
 equals.addEventListener('click', () => {

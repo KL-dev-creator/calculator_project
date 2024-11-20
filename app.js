@@ -68,9 +68,6 @@ two.addEventListener('click', () => {
     currentNumber += "2";
     isOperator = false;
     console.log(currentNumber);
-    console.log("second (EXPECTED RESULT) = " + secondNumber)
-    console.log("first = " + firstNumber)
-    console.log("currentNumber = " + currentNumber)
     })
 
 three.addEventListener('click', () => {
@@ -281,7 +278,6 @@ subtraction.addEventListener('click', () => {
                     if (secondNumber == 0) {
                         firstNumber = currentNumber;
                         holdingNumber = firstNumber;
-                        // displayedText.textContent = "-" + currentNumber;
                         displayedText.textContent = currentNumber;
                         console.log("PATH A"); 
                     } else if (secondNumber !== 0) {
@@ -293,7 +289,6 @@ subtraction.addEventListener('click', () => {
                 } else if (firstNumber !== 0 && secondNumber == 0) {
                     secondNumber = Number(firstNumber);
                     firstNumber = currentNumber;
-                    // HAVE A LOOK HERE BECAUSE OF NEGATIVE NUMBERS
                     holdingNumber -= Number(currentNumber);
                     secondNumber = (Number(secondNumber) - Number(firstNumber));
                     displayedText.textContent = (secondNumber);
@@ -411,7 +406,6 @@ division.addEventListener('click', () => {
             console.log(currentNumber + " is the current number")
             console.log("Nothing now division")
         }
-        console.log("D-EE")
         operator = "/";
         currentNumber = 0;
 

@@ -4,7 +4,6 @@ let operator = "";
 let secondNumber = 0;
 let isOperator = false;
 let decimalCounter = 0;
-let easterEgg = false;
 
 
 const displayedText = document.querySelector(".display");
@@ -36,10 +35,6 @@ function divide(a, b) {
     return result;
 }
 
-// function divideZero(a, b) {
-//     console.log("PATH D3 |" + currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| ");
-//     return displayedText.textContent = "Impossible to divide by zero";
-// }
 
 function operate(firstNumber, operator, secondNumber) {
     if (operator == "+") {
@@ -176,7 +171,7 @@ zero.addEventListener('click', () => {
 
 decimal.addEventListener('click', () => {
     console.log(". has been pressed")
-    // const decimalString = '.';
+    const decimalString = '.';
 
     if ((currentNumber.includes(decimalString)) == true) {
             if (isOperator == true) {
@@ -256,8 +251,6 @@ addition.addEventListener('click', () => {
                     console.log("A + 3T");
                 }
                 holdingNumber += Number(currentNumber);
-                
-                console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
                 currentNumber = 0;
                 return firstNumber;
                 return secondNumber;
@@ -317,10 +310,10 @@ subtraction.addEventListener('click', () => {
                     holdingNumber -= Number(currentNumber);
                     secondNumber = (Number(secondNumber) - Number(firstNumber));
                     displayedText.textContent = (secondNumber);
-                    console.log("second (EXPECTED RESULT) = " + secondNumber)
-                    console.log("first = " + firstNumber)
-                    console.log("currentNumber = " + currentNumber)
-                    console.log("PATH C");
+                    // console.log("second (EXPECTED RESULT) = " + secondNumber)
+                    // console.log("first = " + firstNumber)
+                    // console.log("currentNumber = " + currentNumber)
+                    // console.log("PATH C");
                 } else {
                     // To avoid numbers becoming negative
                     if (currentNumber < 0) {
@@ -403,7 +396,6 @@ multiplication.addEventListener('click', () => {
                 currentNumber = 0;
                 return firstNumber;
                 return secondNumber;
-                // TRY MULTIPLYING AND THEN DIVIDING STRAIGHT AFTERWARDS EXPECTED OUTPUT IS NOT GIVEN
             }
         }
     })
@@ -427,7 +419,6 @@ division.addEventListener('click', () => {
         } else if (operator == "") {
             firstNumber = currentNumber;
             displayedText.textContent = "/"
-            // console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| ");
             console.log("Nothing now division")
         }
         operator = "/";
@@ -439,9 +430,12 @@ division.addEventListener('click', () => {
         if (operator == "/" && currentNumber == 0) {
             if (currentNumber == 0) {
                 displayedText.textContent = "Nice try, but dividing by 0 is impossible"
-                return easterEgg = true;
+                currentNumber = 0;
+                firstNumber = 0;
+                secondNumber = 0;
+                holdingNumber = 0;
+                isOperator = false;
             }
-            // console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| ");
             console.log("Double division detected")
         } else {
                 operator ="/";
@@ -449,20 +443,16 @@ division.addEventListener('click', () => {
                     (firstNumber = currentNumber);
                     holdingNumber = firstNumber;
                     displayedText.textContent = "/";
-                    // console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| ");
-                    console.log("D-A")
                 } else if (firstNumber !== 0 && secondNumber == 0) {
                     (secondNumber = Number(firstNumber));
                     (firstNumber = currentNumber);
                     holdingNumber /= Number(currentNumber);
                     displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
-                    console.log("D-B")
                 } else {
                     (secondNumber = Number(secondNumber) / Number(firstNumber));
                     (firstNumber = currentNumber);
                     holdingNumber /= Number(currentNumber);
                     displayedText.textContent = (Number(secondNumber) / Number(firstNumber));
-                    console.log("D-C")
                 }
                 holdingNumber /= Number(currentNumber);
                 currentNumber = 0;
@@ -477,19 +467,24 @@ equals.addEventListener('click', () => {
     isOperator = true;
     if (secondNumber == 0 && firstNumber !== 0 && currentNumber == 0 && operator == "/") {
         displayedText.textContent = "Nice try, but dividing by 0 is impossible"
+        currentNumber = 0;
+        firstNumber = 0;
+        secondNumber = 0;
+        holdingNumber = 0;
+        isOperator = false;
     } else if (firstNumber == 0) {
         (firstNumber += currentNumber);
-        // displayedText.textContent = Math.round(operate(firstNumber, operator, secondNumber) * 100) / 100; <- old formula
-        // console.log("current number length is = " + String(Number(currentNumber)).length)
         let calculatedResult = operate(firstNumber, operator, secondNumber)
             if (calculatedResult % 1 == 0) {
                 displayedText.textContent = (operate(firstNumber, operator, secondNumber));
+                console.log("Try to activate a1")
             } else  {
-                displayedText.textContent = (operate(firstNumber, operator, secondNumber).toPrecision(8));
+                displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
+                console.log("Try to activate a2")
             }
         
         console.log("The result should be " + calculatedResult)
-        displayedText.textContent = (operate(firstNumber, operator, secondNumber).toPrecision(8));
+        // displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
     } else if (firstNumber !== 0 && secondNumber == 0) {
         (secondNumber += firstNumber);
         (firstNumber = currentNumber);
@@ -505,15 +500,11 @@ equals.addEventListener('click', () => {
         console.log("The result should be " + calculatedResult)
 
     } else {
-        (secondNumber = firstNumber);
+        (secondNumber += Number(firstNumber));
         (firstNumber = currentNumber);
         console.log("current number length is = " + String(Number(currentNumber)).length)
-        let calculatedResult = operate(firstNumber, operator, secondNumber)
-        console.log("The result should be " + calculatedResult)
         displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
-        // displayedText.textContent = Math.round(operate(firstNumber, operator, secondNumber) * 100) / 100;
     }
-    // displayedText.textContent = Math.round(operate(firstNumber, operator, secondNumber) * 100) / 100;
     currentNumber = 0;
     firstNumber = 0;
     secondNumber = 0;

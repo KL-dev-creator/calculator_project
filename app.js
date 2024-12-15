@@ -203,6 +203,25 @@ PosNegToggle.addEventListener('click', () => {
     console.log(currentNumber);
     })
 
+backspace.addEventListener('click', () => {
+    console.log("backspace has been pressed")
+    if (isOperator == true) {
+        console.log("backspaceactivatedREMOVETHISSOON")
+
+        // continue from here
+    } else if (isOperator == false) {
+        currentNumber = Number(currentNumber);
+        let currentNumberLengthSubtractOne = ((String(Number(currentNumber)).length) - 1);
+        let NewcurrentNumber = String(currentNumber).slice(0, (currentNumberLengthSubtractOne));
+        displayedText.textContent = NewcurrentNumber;
+
+        currentNumber = NewcurrentNumber;
+        NewcurrentNumber = 0;
+    }
+    isOperator = false;
+    console.log(currentNumber);
+    })
+
 addition.addEventListener('click', () => {
     console.log("+ has been pressed")
     isOperator = true;

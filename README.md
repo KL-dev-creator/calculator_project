@@ -7,6 +7,9 @@ I recommend a differnt approach.
 
 Known bugs:
 
+Backspace on operators causes errors
+2 / 6 + 4 = 8
+
 
 Future improvements:
 Keyboard interactivity

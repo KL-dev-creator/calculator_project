@@ -4,6 +4,7 @@ let operator = "";
 let secondNumber = 0;
 let isOperator = false;
 let decimalCounter = 0;
+let operatorBypass = 0;
 
 
 const displayedText = document.querySelector(".display");
@@ -50,6 +51,102 @@ function operate(firstNumber, operator, secondNumber) {
     }
 }
 
+document.addEventListener("keyup", event => {
+    if (event.key == 1) {
+        console.log("One has been pressed");
+        if (isOperator == true) {
+            displayedText.textContent = "1";
+        } else if (isOperator == false) {
+            displayedText.textContent += "1";
+        }
+        currentNumber += "1";
+        isOperator = false;
+    } else if (event.key == 2) {
+        console.log("Two has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "2";
+        } else if (isOperator == false) {
+            displayedText.textContent += "2";
+        }
+        currentNumber += "2";
+        isOperator = false;
+    } else if (event.key == 3) {
+        console.log("Three has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "3";
+        } else if (isOperator == false) {
+            displayedText.textContent += "3";
+        }
+        currentNumber += "3";
+        isOperator = false;
+    } else if (event.key == 4) {
+        console.log("Four has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "4";
+        } else if (isOperator == false) {
+            displayedText.textContent += "4";
+        }
+        currentNumber += "4";
+        isOperator = false;
+    } else if (event.key == 5) {
+        console.log("Five has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "5";
+        } else if (isOperator == false) {
+            displayedText.textContent += "5";
+        }
+        currentNumber += "5";
+        isOperator = false;
+    } else if (event.key == 6) {
+        console.log("Six has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "6";
+        } else if (isOperator == false) {
+            displayedText.textContent += "6";
+        }
+        currentNumber += "6";
+        isOperator = false;  
+    } else if (event.key == 7) {
+        console.log("Seven has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "7";
+        } else if (isOperator == false) {
+            displayedText.textContent += "7";
+        }
+        currentNumber += "7";
+        isOperator = false;
+    } else if (event.key == 8) {
+        console.log("Eight has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "8";
+        } else if (isOperator == false) {
+            displayedText.textContent += "8";
+        }
+        currentNumber += "8";
+        isOperator = false;
+    } else if (event.key == 9) {
+        console.log("Nine has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "9";
+        } else if (isOperator == false) {
+            displayedText.textContent += "9";
+        }
+        currentNumber += "9";
+        isOperator = false;
+    } else if (event.key == 0) {
+        console.log("Zero has been pressed")
+        if (isOperator == true) {
+            displayedText.textContent = "0";
+        } else if (isOperator == false) {
+            displayedText.textContent += "0";
+        }
+        currentNumber += "0";
+        isOperator = false;
+    }
+});
+
+
+
 one.addEventListener('click', () => {
     console.log("One has been pressed");
     if (isOperator == true) {
@@ -70,7 +167,6 @@ two.addEventListener('click', () => {
     }
     currentNumber += "2";
     isOperator = false;
-    console.log(currentNumber);
     })
 
 three.addEventListener('click', () => {
@@ -82,7 +178,6 @@ three.addEventListener('click', () => {
     }
     currentNumber += "3";
     isOperator = false;
-    console.log(currentNumber);
     })
     
 four.addEventListener('click', () => {
@@ -94,7 +189,6 @@ four.addEventListener('click', () => {
     }
     currentNumber += "4";
     isOperator = false;
-    console.log(currentNumber);
     })
 
 five.addEventListener('click', () => {
@@ -106,7 +200,6 @@ five.addEventListener('click', () => {
     }
     currentNumber += "5";
     isOperator = false;
-    console.log(currentNumber);
     })
 
 six.addEventListener('click', () => {
@@ -118,7 +211,6 @@ six.addEventListener('click', () => {
     }
     currentNumber += "6";
     isOperator = false;
-    console.log(currentNumber);
     })
 
 seven.addEventListener('click', () => {
@@ -130,7 +222,6 @@ seven.addEventListener('click', () => {
     }
     currentNumber += "7";
     isOperator = false;
-    console.log(currentNumber);
     })
 
 eight.addEventListener('click', () => {
@@ -142,7 +233,6 @@ eight.addEventListener('click', () => {
     }
     currentNumber += "8";
     isOperator = false;
-    console.log(currentNumber);
     })
 
 nine.addEventListener('click', () => {
@@ -154,7 +244,6 @@ nine.addEventListener('click', () => {
     }
     currentNumber += "9";
     isOperator = false;
-    console.log(currentNumber);
     })
 
 zero.addEventListener('click', () => {
@@ -206,8 +295,12 @@ PosNegToggle.addEventListener('click', () => {
 backspace.addEventListener('click', () => {
     console.log("backspace has been pressed")
     if (isOperator == true) {
-        console.log("backspaceactivatedREMOVETHISSOON")
-
+        // console.log(currentNumber + " " + firstNumber + " " + secondNumber);
+        // displayedText.textContent = Number(firstNumber);
+        // operator = "";
+        // displayedText.textContent = Number(currentNumber);
+        displayedText.textContent = " ";
+        operator = "";
         // continue from here
     } else if (isOperator == false) {
         currentNumber = Number(currentNumber);
@@ -225,18 +318,23 @@ backspace.addEventListener('click', () => {
 addition.addEventListener('click', () => {
     console.log("+ has been pressed")
     isOperator = true;
+    console.log("currentNumber "+ currentNumber)
     if (operator !== "+") {
             if (operator == "-") {
                 firstNumber = Number(firstNumber) - Number(currentNumber);
                 displayedText.textContent = firstNumber + " +";
                 console.log("subtraction now addition")
             } else if (operator == "*") {
-                firstNumber = Number(firstNumber) * Number(currentNumber);
+                currentNumber = Number(operatorBypass);
+                firstNumber = Number(currentNumber);
+                operatorBypass = 0;
+
                 displayedText.textContent = firstNumber + " +";
                 console.log("multiplication now addition")
             } else if (operator == "/") {
                 firstNumber = Number(firstNumber) / Number(currentNumber);
-                displayedText.textContent = firstNumber + " +";
+
+                displayedText.textContent =  (firstNumber.toPrecision(8)) + " +";
                 console.log("division now addition")
             } else if (operator == "") {
                 firstNumber = currentNumber;
@@ -301,6 +399,7 @@ subtraction.addEventListener('click', () => {
             console.log(currentNumber + " is the current number")
             console.log("Nothing now subtraction")
         }
+
         operator = "-";
         currentNumber = 0;
         
@@ -382,11 +481,11 @@ multiplication.addEventListener('click', () => {
             console.log("division now multiplication")
         } else if (operator == "") {
             firstNumber = currentNumber;
-            displayedText.textContent = "x"
-            console.log(currentNumber + " is the current number")
-            console.log("Nothing now subtraction")
+            displayedText.textContent = "x";
+            console.log("Nothing now multiplication")
         }
         operator = "*";
+        operatorBypass = currentNumber;
         currentNumber = 0;
 
         return firstNumber;
@@ -432,8 +531,24 @@ division.addEventListener('click', () => {
             displayedText.textContent = firstNumber + " /";
             console.log("subtraction now division")
         } else if (operator == "*") {
-            firstNumber = Number(firstNumber) * Number(currentNumber);
+            // firstNumber = Number(firstNumber) * Number(currentNumber);
+            // displayedText.textContent = firstNumber + " /";
+
+
+
+
+            currentNumber = Number(operatorBypass);
+            firstNumber = Number(currentNumber);
+            operatorBypass = 0;
+
+
+            console.log("currentNumber "+ currentNumber)
+            console.log("firstNumber "+ firstNumber)
+            console.log("secondNumber "+ secondNumber)
+
             displayedText.textContent = firstNumber + " /";
+
+
             console.log("multiplication now division")
         } else if (operator == "") {
             firstNumber = currentNumber;
@@ -441,6 +556,7 @@ division.addEventListener('click', () => {
             console.log("Nothing now division")
         }
         operator = "/";
+        operatorBypass = currentNumber;
         currentNumber = 0;
 
         return firstNumber;
@@ -519,10 +635,24 @@ equals.addEventListener('click', () => {
         console.log("The result should be " + calculatedResult)
 
     } else {
-        (secondNumber += Number(firstNumber));
-        (firstNumber = currentNumber);
-        console.log("current number length is = " + String(Number(currentNumber)).length)
-        displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
+        if (operator == "+") {
+            (secondNumber += Number(firstNumber));
+            (firstNumber = currentNumber);
+            console.log("current number length is = " + String(Number(currentNumber)).length)
+            displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
+        } else if (operator == "-") {
+
+            (secondNumber = Number(firstNumber));
+            (firstNumber = currentNumber);
+
+            console.log("currentNumber "+ currentNumber)
+            console.log("firstNumber "+ firstNumber)
+            console.log("secondNumber "+ secondNumber)
+
+            displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
+        } else  {
+            console.log("LOL NOTHING")
+        }
     }
     currentNumber = 0;
     firstNumber = 0;

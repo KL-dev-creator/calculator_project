@@ -266,18 +266,15 @@ decimal.addEventListener('click', () => {
             if (isOperator == true) {
                 displayedText.textContent = ".";
             }
-        console.log("yes it has a decimal")
     } else {
             if (isOperator == true) {
                 displayedText.textContent = ".";
             } else if (isOperator == false) {
                 displayedText.textContent += ".";
             }
-        currentNumber += ".";    
-        console.log("no it does not have a decimal")
+        currentNumber += ".";
     }
     isOperator = false;
-    console.log(currentNumber);
     })
 
 PosNegToggle.addEventListener('click', () => {
@@ -289,19 +286,14 @@ PosNegToggle.addEventListener('click', () => {
     }
     currentNumber *= -1;
     isOperator = false;
-    console.log(currentNumber);
     })
 
 backspace.addEventListener('click', () => {
     console.log("backspace has been pressed")
     if (isOperator == true) {
-        // console.log(currentNumber + " " + firstNumber + " " + secondNumber);
-        // displayedText.textContent = Number(firstNumber);
-        // operator = "";
-        // displayedText.textContent = Number(currentNumber);
         displayedText.textContent = " ";
         operator = "";
-        // continue from here
+        // Edits need to be made here to prevent erros when backspacing operators
     } else if (isOperator == false) {
         currentNumber = Number(currentNumber);
         let currentNumberLengthSubtractOne = ((String(Number(currentNumber)).length) - 1);
@@ -312,13 +304,11 @@ backspace.addEventListener('click', () => {
         NewcurrentNumber = 0;
     }
     isOperator = false;
-    console.log(currentNumber);
     })
 
 addition.addEventListener('click', () => {
     console.log("+ has been pressed")
     isOperator = true;
-    console.log("currentNumber "+ currentNumber)
     if (operator !== "+") {
             if (operator == "-") {
                 firstNumber = Number(firstNumber) - Number(currentNumber);
@@ -339,7 +329,6 @@ addition.addEventListener('click', () => {
             } else if (operator == "") {
                 firstNumber = currentNumber;
                 displayedText.textContent = "+";
-                console.log(currentNumber + " is the current number")
                 console.log("nothing to addition")
             }
             operator = "+";
@@ -355,17 +344,14 @@ addition.addEventListener('click', () => {
                 if (firstNumber == 0) {
                     (firstNumber += Number(currentNumber));
                     displayedText.textContent = "+";
-                    console.log("A + 1T");
                 } else if (firstNumber !== 0 && secondNumber == 0) {
                     (secondNumber = Number(secondNumber) + Number(firstNumber));
                     (firstNumber = currentNumber);
                     displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
-                    console.log("A + 2T");
                 } else {
                     (secondNumber = Number(secondNumber) + Number(firstNumber));
                     (firstNumber = currentNumber);
                     displayedText.textContent = (Number(firstNumber) + Number(secondNumber));
-                    console.log("A + 3T");
                 }
                 holdingNumber += Number(currentNumber);
                 currentNumber = 0;
@@ -384,7 +370,6 @@ subtraction.addEventListener('click', () => {
             secondNumber = Number(secondNumber) + Number(firstNumber);
             displayedText.textContent = secondNumber + " -";
             console.log("addition now subtraction")
-            console.log(currentNumber + " is the current number| " + firstNumber + " is the first number| " + secondNumber + " is the second number| " + isOperator + " is the state of the operator| " + holdingNumber + " is the holding number");
         } else if (operator == "*") {
             firstNumber = Number(firstNumber) * Number(currentNumber);
             displayedText.textContent = firstNumber + " -";
@@ -396,7 +381,6 @@ subtraction.addEventListener('click', () => {
         } else if (operator == "") {
             firstNumber = currentNumber;
             displayedText.textContent = "-"
-            console.log(currentNumber + " is the current number")
             console.log("Nothing now subtraction")
         }
 
@@ -415,12 +399,10 @@ subtraction.addEventListener('click', () => {
                         firstNumber = currentNumber;
                         holdingNumber = firstNumber;
                         displayedText.textContent = Number(currentNumber);
-                        console.log("PATH A"); 
                     } else if (secondNumber !== 0) {
                         firstNumber = currentNumber;
                         holdingNumber -= Number(currentNumber);
                         displayedText.textContent = holdingNumber;
-                        console.log("PATH B"); 
                     }
                 } else if (firstNumber !== 0 && secondNumber == 0) {
                     secondNumber = Number(firstNumber);
@@ -428,10 +410,6 @@ subtraction.addEventListener('click', () => {
                     holdingNumber -= Number(currentNumber);
                     secondNumber = (Number(secondNumber) - Number(firstNumber));
                     displayedText.textContent = (secondNumber);
-                    // console.log("second (EXPECTED RESULT) = " + secondNumber)
-                    // console.log("first = " + firstNumber)
-                    // console.log("currentNumber = " + currentNumber)
-                    // console.log("PATH C");
                 } else {
                     // To avoid numbers becoming negative
                     if (currentNumber < 0) {
@@ -448,11 +426,8 @@ subtraction.addEventListener('click', () => {
                     firstNumber = currentNumber;
                     secondNumber = secondNumber - firstNumber;
 
-                    console.log("second (EXPECTED RESULT) = " + secondNumber)
-                    console.log("first = " + firstNumber)
-                    console.log("currentNumber = " + currentNumber)
                     displayedText.textContent = Number(secondNumber);
-                    console.log("PATH D");
+                    // Errors may be present here
                 }
                 currentNumber = 0;
                 
@@ -531,24 +506,10 @@ division.addEventListener('click', () => {
             displayedText.textContent = firstNumber + " /";
             console.log("subtraction now division")
         } else if (operator == "*") {
-            // firstNumber = Number(firstNumber) * Number(currentNumber);
-            // displayedText.textContent = firstNumber + " /";
-
-
-
-
             currentNumber = Number(operatorBypass);
             firstNumber = Number(currentNumber);
             operatorBypass = 0;
-
-
-            console.log("currentNumber "+ currentNumber)
-            console.log("firstNumber "+ firstNumber)
-            console.log("secondNumber "+ secondNumber)
-
             displayedText.textContent = firstNumber + " /";
-
-
             console.log("multiplication now division")
         } else if (operator == "") {
             firstNumber = currentNumber;
@@ -612,46 +573,29 @@ equals.addEventListener('click', () => {
         let calculatedResult = operate(firstNumber, operator, secondNumber)
             if (calculatedResult % 1 == 0) {
                 displayedText.textContent = (operate(firstNumber, operator, secondNumber));
-                console.log("Try to activate a1")
             } else  {
                 displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
-                console.log("Try to activate a2")
             }
-        
-        console.log("The result should be " + calculatedResult)
-        // displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
     } else if (firstNumber !== 0 && secondNumber == 0) {
         (secondNumber += firstNumber);
         (firstNumber = currentNumber);
         let calculatedResult = operate(firstNumber, operator, secondNumber)
             if (calculatedResult % 1 == 0) {
-                console.log("no decimals" + " | length of displayed text = " + (String(Number(calculatedResult)).length) )
                 displayedText.textContent = (operate(firstNumber, operator, secondNumber));
             } else  {
-                console.log("decimals")
                 displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
             }
-        
-        console.log("The result should be " + calculatedResult)
-
     } else {
         if (operator == "+") {
             (secondNumber += Number(firstNumber));
             (firstNumber = currentNumber);
-            console.log("current number length is = " + String(Number(currentNumber)).length)
             displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
         } else if (operator == "-") {
-
             (secondNumber = Number(firstNumber));
             (firstNumber = currentNumber);
-
-            console.log("currentNumber "+ currentNumber)
-            console.log("firstNumber "+ firstNumber)
-            console.log("secondNumber "+ secondNumber)
-
             displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
         } else  {
-            console.log("LOL NOTHING")
+            // Ommitted multiplication and division due to possible redundancy
         }
     }
     currentNumber = 0;
@@ -659,24 +603,7 @@ equals.addEventListener('click', () => {
     secondNumber = 0;
     holdingNumber = 0;
     operator = "";
-    console.log(currentNumber + "The first number is " + firstNumber + "| The second number is " + secondNumber);
     })
-
-// function convertButtonInput(num) {
-//     num.addEventListener()
-//     return displayedText.textContent += num;
-// }
-
-// function CalculatorArray (buttonID, buttonName, isOperator) {
-//     buttonID; [1,2,3,4,5,6,7,8,9,0,"+","-","x","/"],
-//     buttonName; [one, two, three, four, five, six, seven, eight, nine , zero, addition, subtraction, multiplication, division],
-//     isOperator; [false, false, false, false, false, false, false, false, false, false, true, true, true, true]
-//     };
-
-// const mappedCalculatorArray = calculatorArray.map(convertButtonInput)
-
-// console.log(CalculatorArray[0])
-
 
 clear.addEventListener('click', () => {
     currentNumber = 0;

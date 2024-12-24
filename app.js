@@ -315,15 +315,11 @@ addition.addEventListener('click', () => {
                 displayedText.textContent = firstNumber + " +";
                 console.log("subtraction now addition")
             } else if (operator == "*") {
-                currentNumber = Number(operatorBypass);
-                firstNumber = Number(currentNumber);
-                operatorBypass = 0;
-
+                firstNumber = Number(firstNumber) * Number(currentNumber);
                 displayedText.textContent = firstNumber + " +";
                 console.log("multiplication now addition")
             } else if (operator == "/") {
                 firstNumber = Number(firstNumber) / Number(currentNumber);
-
                 displayedText.textContent =  (firstNumber.toPrecision(8)) + " +";
                 console.log("division now addition")
             } else if (operator == "") {
@@ -370,7 +366,6 @@ subtraction.addEventListener('click', () => {
             secondNumber = Number(secondNumber) + Number(firstNumber);
             displayedText.textContent = secondNumber + " -";
             console.log("addition now subtraction")
-            console.log("AAA")
         } else if (operator == "*") {
             firstNumber = Number(firstNumber) * Number(currentNumber);
             displayedText.textContent = firstNumber + " -";
@@ -507,10 +502,10 @@ division.addEventListener('click', () => {
             displayedText.textContent = firstNumber + " /";
             console.log("subtraction now division")
         } else if (operator == "*") {
-            currentNumber = Number(operatorBypass);
-            firstNumber = Number(currentNumber);
+            firstNumber = Number(firstNumber) * Number(currentNumber);
             operatorBypass = 0;
-            displayedText.textContent = firstNumber + " /";
+
+            displayedText.textContent = firstNumber + " /";            
             console.log("multiplication now division")
         } else if (operator == "") {
             firstNumber = currentNumber;
@@ -561,10 +556,6 @@ division.addEventListener('click', () => {
 
 equals.addEventListener('click', () => {
     console.log("= has been pressed")
-    console.log(currentNumber)
-    console.log(firstNumber)
-    console.log(secondNumber)
-
 
     isOperator = true;
     if (secondNumber == 0 && firstNumber !== 0 && currentNumber == 0 && operator == "/") {
@@ -579,10 +570,8 @@ equals.addEventListener('click', () => {
         let calculatedResult = operate(firstNumber, operator, secondNumber)
             if (calculatedResult % 1 == 0) {
                 displayedText.textContent = (operate(firstNumber, operator, secondNumber));
-                console.log("Does this function get called? V1")
             } else  {
                 displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
-                console.log("Does this function get called?")
             }
     } else if (firstNumber !== 0 && secondNumber == 0) {
         (secondNumber += firstNumber);
@@ -601,10 +590,15 @@ equals.addEventListener('click', () => {
         } else if (operator == "-") {
             (firstNumber = Number(currentNumber));
             (secondNumber -= Number(firstNumber));
-
             displayedText.textContent = (Number.parseFloat(secondNumber.toPrecision(8)));
-        } else  {
-            // Ommitted multiplication and division due to possible redundancy
+        } else if (operator == "*") {
+            (secondNumber *= Number(firstNumber));
+            (firstNumber = currentNumber);
+            displayedText.textContent = (Number.parseFloat(operate(firstNumber, operator, secondNumber).toPrecision(8)));
+        } else if (operator == "/") {
+            (secondNumber = Number(firstNumber) / Number(currentNumber));
+            (firstNumber = Number(currentNumber));
+            displayedText.textContent = (Number.parseFloat(secondNumber.toPrecision(8)));
         }
     }
     currentNumber = 0;
